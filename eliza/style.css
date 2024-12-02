@@ -1,0 +1,128 @@
+/*reset default margin padding set box-sizing to border-box for all*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*style for the body element*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+/*style for the chat container*/
+.chat-container {
+    background-color: #fff;
+    width: 380px;
+    height: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/*style for the header*/
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/*style for the header title*/
+header h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+/*style for the header subtitle*/
+header p {
+    font-size: 14px;
+}
+
+/*style for the conversation*/
+.conversation {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
+}
+
+/*style for the input*/
+.input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/*style for the input field*/
+.input-container input {
+    width: 80%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+/*style for the input field when clicked*/
+.input-container input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/*style for the send button*/
+.input-container button {
+    width: 18%;
+    padding: 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/*style for the send button hover*/
+.input-container button:hover {
+    background-color: #0056b3;
+}
+
+/*style for user messages*/
+.user-message {
+    text-align: right;
+    background-color: #e2f7e5;
+    color: #333;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 75%;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+/*style for eliza messages*/
+.eliza-message {
+    text-align: left;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 75%;
+    display: inline-block;
+    word-wrap: break-word;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELIZA Chatbot</title>
+    <!--link to css file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>ELIZA Chatbot</h1>
+            <p>Ask me anything!</p>
+        </header>
+
+        <!--container for conversation -->
+        <div id="conversation" class="conversation">
+            <div class="message-container">
+                <!--initial message from the bot -->
+                <div class="message bot">Hello! I'm ELIZA. How can I help you today?</div>
+            </div>
+        </div>
+
+        <!--container for user input -->
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <!--link to external JavaScript file -->
+    <script src="eliza/eliza.js"></script>
+</body>
+</html>

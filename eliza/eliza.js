@@ -24,6 +24,18 @@ function addMessage() {
 
     //set the input to empty
     inputElement.value = '';
+
+    //add bot message
+    const elizaResponse = respond(userMessage);
+
+    //add elizas repose to text area
+    const elizaElement = document.createElement('div');
+    elizaElement.className = 'eliza-message';
+    elizaElement.textContent = `${elizaResponse}`;
+    textArea.appendChild(elizaElement);
+
+    //scroll to the bottom of the text area
+    textArea.scrollTop = textArea.scrollHeight;
 }
 
 //reflections object
@@ -51,7 +63,7 @@ const reflections = {
 //responses object
 const responses = [
     {
-        pattern: /I need (.*)/,
+        pattern: /I need (.*)/i,
         response: [
             "Why do you need {0}?",
             "Would getting {0} help you?",
@@ -60,7 +72,7 @@ const responses = [
     },
     {
         //only process one word after I feel so bot doesnt output more then the feeling
-        pattern: /I feel (\w+)/,
+        pattern: /I feel (\w+)/i,
         response: [
             "Why do you feel {0}?",
             "How often do you feel {0}?",
@@ -106,5 +118,5 @@ function respond(input) {
 sendButton.addEventListener('click', addMessage);
 
 //test
-const userInput = "I feel good how are you feeling";
-console.log(respond(userInput));
+//const userInput = "I feel good how are you feeling";
+//console.log(respond(userInput));

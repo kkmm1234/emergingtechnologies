@@ -41,8 +41,8 @@ function addMessage() {
 //reflections object
 const reflections = {
     "i": "you",
-    "me": "you",
     "my": "your",
+    "me": "you",
     "am": "are",
     "you": "I",
     "your": "my",
@@ -66,7 +66,7 @@ const responses = [
         pattern: /I need (.*)/i,
         response: [
             "Why do you need {0}?",
-            "Would getting {0} help you?",
+            "Would getting {0}, help you?",
             "What if you didn't need {0}?"
         ]
     },
@@ -85,8 +85,27 @@ const responses = [
 function reflect(input) {
     //split the input into words
     const words = input.toLowerCase().split(' ');
+    
     //map the words to their reflections
-    const reflectedWords = words.map(word => reflections[word] || word);
+    const reflectedWords = words.map((word, index) => {
+        //handle edge cases for "you" between "I" and "me"
+        if (word === "you") {
+            //define words that can cause edge cases
+            const problems = ["to", "at", "on", "for", "with", "in",
+                 "by", "about", "before", "under", "over", "give", 
+                 "send", "tell", "ask", "show", "bring", "because",];
+                 
+            //check if the next word is a preposition
+            if (problems.includes(words[index + 1])) {
+                return "me"; //reflect "you" to "me"
+            }
+        
+            return "I"; //default reflection for "you"
+        }
+        //return the reflection of the word
+        return reflections[word] || word;
+    });
+
     //join the reflected words back into a sentence
     return reflectedWords.join(' ');
 }
@@ -105,7 +124,7 @@ function respond(input) {
             const selectedResponse = response[Math.floor(Math.random() * response.length)];
             //reflected the response groups
             const reflectedGroups = match.slice(1).map(group => reflect(group));
-
+            
             //replace placeholders with reflected groups
             return selectedResponse.replace(/{(\d+)}/g, (match, number) => reflectedGroups[number] || match);
         }

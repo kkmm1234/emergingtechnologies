@@ -48,6 +48,27 @@ const reflections = {
     "yourself": "myself"
 }
 
+//responses object
+const responses = [
+    {
+        pattern: /I need (.*)/,
+        response: [
+            "Why do you need {0}?",
+            "Would getting {0} help you?",
+            "What if you didn't need {0}?"
+        ]
+    },
+    {
+        //only process one word after I feel so bot doesnt output more then the feeling
+        pattern: /I feel (\w+)/,
+        response: [
+            "Why do you feel {0}?",
+            "How often do you feel {0}?",
+            "What makes you feel {0}?"
+        ]
+    }
+];
+
 //reflect function
 function reflect(input) {
     //split the input into words
@@ -60,13 +81,30 @@ function reflect(input) {
 
 //test response
 function respond(input) {
-    const reflected = reflect(input);
-    return `input "${userInput}", output: "${reflected}"`;
+    //iterate over the response patterns
+    for(let i = 0; i < responses.length; i++) {
+        const { pattern, response} = responses[i];
+        //attempt to match the input to the pattern
+        const match = input.match(pattern);
+        
+        //if the input matches the pattern
+        if(match){
+            //randomly select a response
+            const selectedResponse = response[Math.floor(Math.random() * response.length)];
+            //reflected the response groups
+            const reflectedGroups = match.slice(1).map(group => reflect(group));
+
+            //replace placeholders with reflected groups
+            return selectedResponse.replace(/{(\d+)}/g, (match, number) => reflectedGroups[number] || match);
+        }
+    }
+    //default response
+    return "I'm not sure I understand, please explain further.";
 }
 
 //event listener for send button calls add message function
 sendButton.addEventListener('click', addMessage);
 
 //test
-const userInput = "I am feeling good how are you feeling";
+const userInput = "I feel good how are you feeling";
 console.log(respond(userInput));

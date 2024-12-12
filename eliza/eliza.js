@@ -41,10 +41,11 @@ function addMessage() {
 //reflections object
 const reflections = {
     "i": "you",
-    "my": "your",
     "me": "you",
+    "my": "your",
     "am": "are",
     "you": "I",
+    "you" : "me",
     "your": "my",
     "yours": "mine",
     "are": "am",
@@ -61,207 +62,56 @@ const reflections = {
 }
 
 //responses object
-const responses = [
-    {
-        pattern: /I need (.*)/i,
-        response: [
-            "Why do you need {0}?",
-            "Would getting {0} help you?",
-            "What if you didn't need {0}?",
-            "How would you feel if you didn't have {0}?",
-            "Is there a specific reason you need {0}?",
-            "How long have you needed {0}?"
-        ]
-    },
-    
-    {
-        //\w+ processes only one word after "I feel"
-        pattern: /I feel (\w+)/i,
-        response: [
-            "Why do you feel {0}?",
-            "How often do you feel {0}?",
-            "What makes you feel {0}?",
-            "When was the last time you felt {0}?",
-            "What would make you feel {0} again?",
-            "Do you usually feel {0} in certain situations?"
-        ]
-    },
-    
-    {
-        pattern: /I want (.*)/i,
-        response: [
-            "Why do you want {0}?",
-            "What makes you desire {0}?",
-            "How would getting {0} make you feel?",
-            "What would you do with {0}?",
-            "How do you think obtaining {0} would affect you?"
-        ]
-    },
-    
-    {
-        pattern: /I am (\w+)/i,
-        response: [
-            "Why do you feel you are {0}?",
-            "What made you feel {0}?",
-            "Do you usually feel {0}?",
-            "When was the last time you felt {0}?",
-            "How long have you been feeling {0}?"
-        ]
-    },
-    
-    {
-        pattern: /I can't (.*)/i,
-        response: [
-            "What makes you think you can't {0}?",
-            "Why do you feel you can't {0}?",
-            "Have you tried to {0} before?",
-            "What if you could {0}?",
-            "What would happen if you could {0}?"
-        ]
-    },
-    
-    {
-        pattern: /I don't know/i,
-        response: [
-            "What makes you feel unsure?",
-            "Why do you think you don't know?",
-            "What could help you figure it out?",
-            "Is there a way to find out?",
-            "How would you feel if you did know?"
-        ]
-    },
-    
-    {
-        pattern: /I think (.*)/i,
-        response: [
-            "Why do you think {0}?",
-            "What makes you believe that {0}?",
-            "Have you thought about it from a different perspective?",
-            "Do you think you are sure about {0}?",
-            "How do you feel about {0}?"
-        ]
-    },
-    
-    {
-        pattern: /You are (\w+)/i,
-        response: [
-            "What makes you say I'm {0}?",
-            "How does it feel to say I'm {0}?",
-            "What does being {0} mean to you?",
-            "Why do you think I am {0}?",
-            "Would you like me to be {0}?"
-        ]
-    },
-    
-    {
-        pattern: /I remember (.*)/i,
-        response: [
-            "Why do you remember {0}?",
-            "What happened when you remembered {0}?",
-            "How do you feel about remembering {0}?",
-            "How long ago did you remember {0}?",
-            "Do you think remembering {0} has affected you?"
-        ]
-    },
-    
-    {
-        pattern: /I always (.*)/i,
-        response: [
-            "Why do you always {0}?",
-            "Do you feel like it's always necessary to {0}?",
-            "Have you considered changing the way you {0}?",
-            "What would happen if you stopped always {0}?",
-            "Is there a reason you always {0}?"
-        ]
-    },
-    
-    {
-        pattern: /I never (.*)/i,
-        response: [
-            "What makes you never {0}?",
-            "Why do you feel you never {0}?",
-            "Have you always felt this way about {0}?",
-            "What would happen if you did {0}?",
-            "Do you think it's important to never {0}?"
-        ]
-    },
-    
-    {
-        pattern: /I feel like (.*)/i,
-        response: [
-            "Why do you feel like {0}?",
-            "What makes you think you feel like {0}?",
-            "What would make you feel differently about {0}?",
-            "Is there a reason you feel like {0}?",
-            "Have you felt like {0} before?"
-        ]
-    },
-    
-    {
-        pattern: /I want to (.*)/i,
-        response: [
-            "Why do you want to {0}?",
-            "What makes you want to {0}?",
-            "How would you feel if you could {0}?",
-            "What would it take for you to {0}?",
-            "How would your life change if you {0}?"
-        ]
-    },
-    
-    {
-        pattern: /I don't (.*)/i,
-        response: [
-            "Why don't you {0}?",
-            "What makes you not {0}?",
-            "Is there something stopping you from {0}?",
-            "Do you think you should {0}?",
-            "What would happen if you did {0}?"
-        ]
-    },
-    
-    {
-        pattern: /You should (.*)/i,
-        response: [
-            "Why do you think I should {0}?",
-            "What makes you say I should {0}?",
-            "How do you feel about me {0}?",
-            "Would it help if I {0}?",
-            "What makes you think I should {0}?"
-        ]
-    },
-    
-    {
-        pattern: /Tell me about (.*)/i,
-        response: [
-            "What would you like to know about {0}?",
-            "Why are you interested in {0}?",
-            "How does {0} make you feel?",
-            "What do you think about {0}?",
-            "Do you have any experience with {0}?"
-        ]
-    },
-    
-    {
-        pattern: /Why (.*)/i,
-        response: [
-            "What makes you ask why {0}?",
-            "What do you think about {0}?",
-            "Why do you think that is?",
-            "How do you feel about {0}?",
-            "What would you do if {0}?"
-        ]
-    },
+const responses = {
+    'hello|hi|hey': [
+        "Hello! How are you feeling today?",
+        "Hi there! What's on your mind?",
+        "Hey! How can I help you?"
+    ],
+    '(.*)?you remind me of (.*)': [
+        "Why do you think I remind you of {1}?",
+        "What makes you think of {1} when talking to me?",
+        "Is it a good feeling to be reminded of {1}?"
+    ],
+    '(.*)?mother|father|family|parent(.*)': [
+        "Tell me more about your family.",
+        "How does that make you feel about your family?",
+        "What role does your family play in your thoughts?"
+    ],
+    '(.*)?I need (.*)': [
+        "Why do you need {1}?",
+        "Would getting {1} really help you?",
+        "What if you didn't need {1}?"
+    ],
+    '(.*)?I am (.*)': [
+        "Why do you think you are {1}?",
+        "How long have you felt that way?",
+        "What made you feel like {1}?"
+    ],
+    '(.*)?I feel (.*)': [
+        "Why do you feel {1}?",
+        "Does feeling {1} happen often?",
+        "How does that feeling affect you?"
+    ],
+    '(.*)?(sorry|apologize)(.*)': [
+        "No need to apologize.",
+        "Apologies aren't necessary. Why do you feel that way?",
+        "It's okay to feel that way."
+    ],
+    'bye|goodbye|exit': [
+        "Goodbye! Take care.",
+        "Thank you for sharing. Goodbye!",
+        "Bye! I'm here if you need to talk again."
+    ],
+    '(.*)': [
+        "Can you tell me more?",
+        "Why do you say that?",
+        "How does that make you feel?",
+        "What do you mean by that?",
+        "Interesting... go on."
+    ]
+};
 
-    //Default response for unrecognized input
-    {
-        pattern: /.*/,
-        response: [
-            "I'm not sure I understand. Could you explain that further?",
-            "I dont understand, Can you tell me more about that?",
-            "I'm not sure how to respond to that. Could you explain more?"
-        ]
-    }
-];
 
 
 //reflect function
@@ -274,30 +124,35 @@ function reflect(input) {
     return reflectedWords.join(' ');
 }
 
-//test response
+//response method
 function respond(input) {
     //iterate over the response patterns
-    for(let i = 0; i < responses.length; i++) {
-        const { pattern, response} = responses[i];
+    for(const [pattern, responseList] of Object.entries(responses)) {
         //attempt to match the input to the pattern
-        const match = input.match(pattern);
+        const regex = new RegExp(pattern, 'i');
+        const match = input.match(regex);
         
         //if the input matches the pattern
         if(match){
             //randomly select a response
-            const selectedResponse = response[Math.floor(Math.random() * response.length)];
-            //reflected the response groups
-            const reflectedGroups = match.slice(1).map(group => reflect(group));
-            
-            //replace placeholders with reflected groups
-            return selectedResponse.replace(/{(\d+)}/g, (match, number) => reflectedGroups[number] || match);
+            const selectedResponse = responseList[Math.floor(Math.random() * responseList.length)];
+           
+            if (match.length > 1){
+                //reflected the response groups
+                const reflectedGroups = match.slice(1).map(group => group ? reflect(group): '');
+                
+                //replace placeholders with reflected groups
+                return selectedResponse.replace(/{(\d+)}/g, (_, number) => reflectedGroups[number] || '');
+            }
+            return selectedResponse;
         }
     }
+    return "I'm not sure I understand. Could you explain that further?";
 }
 
 //event listener for send button calls add message function
 sendButton.addEventListener('click', addMessage);
 
 //test
-//const userInput = "I feel good how are you feeling";
-//console.log(respond(userInput));
+const userInput = "I feel good how are you feeling";
+console.log(respond(userInput));

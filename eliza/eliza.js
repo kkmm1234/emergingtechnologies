@@ -229,5 +229,5 @@ function respond(input) {
 sendButton.addEventListener('click', addMessage);
 
 //test
-//const userInput = "I feel good how are you feeling";
-//console.log(reflect(userInput));
+const userInput = "I feel good how are you feeling";
+console.log(reflect(userInput));

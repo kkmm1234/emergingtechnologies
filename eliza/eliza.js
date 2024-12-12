@@ -200,7 +200,7 @@ function reflect(input) {
 //response method
 function respond(input) {
     //iterate over the response patterns
-    for(const [pattern, responseList] of Object.entries(responses)) {
+    for(const {pattern, response} of responses) {
         //attempt to match the input to the pattern
         const regex = new RegExp(pattern, 'i');
         const match = input.match(regex);
@@ -208,7 +208,7 @@ function respond(input) {
         //if the input matches the pattern
         if(match){
             //randomly select a response
-            const selectedResponse = responseList[Math.floor(Math.random() * responseList.length)];
+            const selectedResponse = response[Math.floor(Math.random() * response.length)];
            
             if (match.length > 1){
                 //reflected the response groups
@@ -217,9 +217,11 @@ function respond(input) {
                 //replace placeholders with reflected groups
                 return selectedResponse.replace(/{(\d+)}/g, (_, number) => reflectedGroups[number] || '');
             }
+            //return the selected response if no groups
             return selectedResponse;
         }
     }
+    //return default response if no matches
     return "I'm not sure I understand. Could you explain that further?";
 }
 

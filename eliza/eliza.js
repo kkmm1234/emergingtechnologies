@@ -61,56 +61,110 @@ const reflections = {
     "yourself": "myself"
 }
 
-//responses object
-const responses = {
-    'hello|hi|hey': [
-        "Hello! How are you feeling today?",
-        "Hi there! What's on your mind?",
-        "Hey! How can I help you?"
-    ],
-    '(.*)?you remind me of (.*)': [
-        "Why do you think I remind you of {1}?",
-        "What makes you think of {1} when talking to me?",
-        "Is it a good feeling to be reminded of {1}?"
-    ],
-    '(.*)?mother|father|family|parent(.*)': [
-        "Tell me more about your family.",
-        "How does that make you feel about your family?",
-        "What role does your family play in your thoughts?"
-    ],
-    '(.*)?I need (.*)': [
-        "Why do you need {1}?",
-        "Would getting {1} really help you?",
-        "What if you didn't need {1}?"
-    ],
-    '(.*)?I am (.*)': [
-        "Why do you think you are {1}?",
-        "How long have you felt that way?",
-        "What made you feel like {1}?"
-    ],
-    '(.*)?I feel (.*)': [
-        "Why do you feel {1}?",
-        "Does feeling {1} happen often?",
-        "How does that feeling affect you?"
-    ],
-    '(.*)?(sorry|apologize)(.*)': [
-        "No need to apologize.",
-        "Apologies aren't necessary. Why do you feel that way?",
-        "It's okay to feel that way."
-    ],
-    'bye|goodbye|exit': [
-        "Goodbye! Take care.",
-        "Thank you for sharing. Goodbye!",
-        "Bye! I'm here if you need to talk again."
-    ],
-    '(.*)': [
-        "Can you tell me more?",
-        "Why do you say that?",
-        "How does that make you feel?",
-        "What do you mean by that?",
-        "Interesting... go on."
-    ]
-};
+const responses = [
+    {
+        //using word boundaries for more accurate matching
+        pattern: /\bi (?:am|feel|was) ((?:\w+\s*)+)\b/i,
+        response: [
+            "Why do you feel {0}?",
+            "How long have you felt {0}?",
+            "Do you often feel {0}?",
+            "What makes you feel {0}?"
+        ]
+    },
+    {
+        //handle you followed by prepositions separately
+        pattern: /\byou (?:are|seem|look) ((?:\w+\s*)+)\b/i,
+        response: [
+            "What makes you think I am {0}?",
+            "Why do you say I am {0}?",
+            "Does it matter to you if I am {0}?"
+        ]
+    },
+    {
+        //improved pattern for I need/want
+        pattern: /\bi (?:need|want) ((?:\w+\s*)+)\b/i,
+        response: [
+            "Why do you need {0}?",
+            "Would it really help you to get {0}?",
+            "Are you sure you need {0}?"
+        ]
+    },
+    {
+        //pattern for questions about the bot
+        pattern: /\bcan you ([^?]+)\??/i,
+        response: [
+            "You believe I can {0}?",
+            "What makes you think I can {0}?",
+            "Perhaps you would like me to {0}?"
+        ]
+    },
+    {
+        //pattern for memory/remembering
+        pattern: /\bi (?:remember|recall) ((?:\w+\s*)+)\b/i,
+        response: [
+            "Do you often think of {0}?",
+            "Does thinking of {0} bring anything else to mind?",
+            "What else do you remember about {0}?"
+        ]
+    },
+    {
+        //pattern for problems/difficulties
+        pattern: /\bi (?:can't|cannot) ((?:\w+\s*)+)\b/i,
+        response: [
+            "How do you know you can't {0}?",
+            "Have you tried to {0}?",
+            "Perhaps you could {0} now?"
+        ]
+    },
+    {
+        //pattern for feelings about others
+        pattern: /\b(?:my|our) ((?:mother|father|sister|brother|family|friend)(?:\s\w+)*)\b/i,
+        response: [
+            "Tell me more about your {0}.",
+            "How do you feel about your {0}?",
+            "What comes to mind when you think of your {0}?"
+        ]
+    },
+    {
+        //pattern for statements about the past
+        pattern: /\bi (?:was|used to) ((?:\w+\s*)+)\b/i,
+        response: [
+            "How do you feel about {0} now?",
+            "And what about now?",
+            "How has that changed?"
+        ]
+    },
+    {
+        //pattern for helos
+        pattern: /\b(?:hello|hi|hey)\b/i,
+        response: [
+            "Hello! How are you feeling today?",
+            "Hi there! What's on your mind?",
+            "Hey! How can I help you?"
+        ]
+    },
+    {
+        //pattern for goodbyes
+        pattern: /\b(?:goodbye|bye)\b/i,
+        response: [
+            "Goodbye! Take care.",
+            "Thank you for sharing. Goodbye!",
+            "Bye! I'm here if you need to talk again."
+        ]
+    },
+    {
+        //default pattern
+        pattern: /(.*)/i,
+        response: [
+            "Please tell me more.",
+            "Let's explore that together.",
+            "What does that suggest to you?",
+            "Can you elaborate on that?",
+            "I see. Please go on."
+        ]
+    }
+];
 
 
 

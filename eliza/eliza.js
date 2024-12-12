@@ -41,25 +41,24 @@ function addMessage() {
 //reflections object
 const reflections = {
     "i": "you",
-    "me": "you",
     "my": "your",
+    "me": "you",
+    "mine": "yours",
     "am": "are",
+    "i'm": "you're",
+    "i'd": "you would",
+    "i've": "you've",
+    "i'll": "you'll",
     "you": "I",
-    "you" : "me",
     "your": "my",
     "yours": "mine",
-    "are": "am",
-    "was": "were",
-    "were": "was",
-    "i'd": "you would",
-    "i've": "you have",
-    "i'll": "you will",
-    "you'd": "I would",
-    "you've": "I have",
-    "you'll": "I will",
-    "myself": "yourself",
-    "yourself": "myself"
-}
+    "you're": "I'm",
+    "you've": "I've",
+    "you'll": "I'll",
+    "you'd": "I'd",
+    "yourself": "myself",
+    "myself": "yourself"
+};
 
 const responses = [
     {
@@ -170,12 +169,32 @@ const responses = [
 
 //reflect function
 function reflect(input) {
-    //convert input to lowercase and split into words
-    const words = input.toLowerCase().split(' ');
-    //iterate over the words and reflect if there is a reflection
-    const reflectedWords = words.map(word => reflections[word] || word);
-    //return the reflected words as a string
-    return reflectedWords.join(' ');
+    //split into words preserve punctuation
+    const words = input.toLowerCase().match(/\b\w+\b|\S/g) || [];
+    
+    //iterate over words
+    return words.map((word, index, array) => {
+        //get the reflection for the word
+        const reflection = reflections[word];
+        
+        //if no reflection exists return the word
+        if (!reflection) return word;
+        
+        //special handling for contexts
+        if (word === "you" || word === "i") {
+            //check previous word for problems
+            const prevWord = array[index - 1];
+            const nextWord = array[index + 1];
+            const problems = ["to", "for", "with", "at", "by", "about"];
+            
+            //if the previous or next word is a problem word
+            if (problems.includes(prevWord) || problems.includes(nextWord)) {
+                return word === "you" ? "me" : "you";
+            }
+        }
+        
+        return reflection;
+    }).join(' ');
 }
 
 //response method
@@ -209,4 +228,4 @@ sendButton.addEventListener('click', addMessage);
 
 //test
 const userInput = "I feel good how are you feeling";
-console.log(respond(userInput));
+console.log(reflect(userInput));

@@ -60,112 +60,102 @@ const reflections = {
     "myself": "yourself"
 };
 
-const responses = [
-    {
-        //using word boundaries for more accurate matching
-        pattern: /\bi (?:am|feel|was) ((?:\w+\s*)+)\b/i,
-        response: [
-            "Why do you feel {0}?",
-            "How long have you felt {0}?",
-            "Do you often feel {0}?",
-            "What makes you feel {0}?"
-        ]
-    },
-    {
-        //handle you followed by prepositions separately
-        pattern: /\byou (?:are|seem|look) ((?:\w+\s*)+)\b/i,
-        response: [
-            "What makes you think I am {0}?",
-            "Why do you say I am {0}?",
-            "Does it matter to you if I am {0}?"
-        ]
-    },
-    {
-        //improved pattern for I need/want
-        pattern: /\bi (?:need|want) ((?:\w+\s*)+)\b/i,
-        response: [
-            "Why do you need {0}?",
-            "Would it really help you to get {0}?",
-            "Are you sure you need {0}?"
-        ]
-    },
-    {
-        //pattern for questions about the bot
-        pattern: /\bcan you ([^?]+)\??/i,
-        response: [
-            "You believe I can {0}?",
-            "What makes you think I can {0}?",
-            "Perhaps you would like me to {0}?"
-        ]
-    },
-    {
-        //pattern for memory/remembering
-        pattern: /\bi (?:remember|recall) ((?:\w+\s*)+)\b/i,
-        response: [
-            "Do you often think of {0}?",
-            "Does thinking of {0} bring anything else to mind?",
-            "What else do you remember about {0}?"
-        ]
-    },
-    {
-        //pattern for problems/difficulties
-        pattern: /\bi (?:can't|cannot) ((?:\w+\s*)+)\b/i,
-        response: [
-            "How do you know you can't {0}?",
-            "Have you tried to {0}?",
-            "Perhaps you could {0} now?"
-        ]
-    },
-    {
-        //pattern for feelings about others
-        pattern: /\b(?:my|our) ((?:mother|father|sister|brother|family|friend)(?:\s\w+)*)\b/i,
-        response: [
-            "Tell me more about your {0}.",
-            "How do you feel about your {0}?",
-            "What comes to mind when you think of your {0}?"
-        ]
-    },
-    {
-        //pattern for statements about the past
-        pattern: /\bi (?:was|used to) ((?:\w+\s*)+)\b/i,
-        response: [
-            "How do you feel about {0} now?",
-            "And what about now?",
-            "How has that changed?"
-        ]
-    },
-    {
-        //pattern for helos
-        pattern: /\b(?:hello|hi|hey)\b/i,
-        response: [
-            "Hello! How are you feeling today?",
-            "Hi there! What's on your mind?",
-            "Hey! How can I help you?"
-        ]
-    },
-    {
-        //pattern for goodbyes
-        pattern: /\b(?:goodbye|bye)\b/i,
-        response: [
-            "Goodbye! Take care.",
-            "Thank you for sharing. Goodbye!",
-            "Bye! I'm here if you need to talk again."
-        ]
-    },
-    {
-        //default pattern
-        pattern: /(.*)/i,
-        response: [
-            "Please tell me more.",
-            "Let's explore that together.",
-            "What does that suggest to you?",
-            "Can you elaborate on that?",
-            "I see. Please go on."
-        ]
-    }
-];
+const responses = {
+    //goodbye patterns
+    "goodbye|bye|later|farewell": [
+        "Take care! It’s been a pleasure chatting with you.",
+        "See you later! Remember, I’m here when you need to talk.",
+        "Goodbye for now. Feel free to return whenever you like.",
+        "Farewell! Wishing you the best until next time."
+    ],
 
+    //emotions
+    "glad|happy|excited|cheerful": [
+        "That’s amazing! What’s brightened your day?",
+        "I’m happy to hear that! What’s bringing you so much joy?",
+        "It’s wonderful that you’re feeling cheerful. What’s the occasion?",
+        "Great to know you’re in good spirits! What’s making you feel so positive?"
+    ],
 
+    "sad|unhappy|miserable|blue": [
+        "I’m sorry to hear that. What’s been on your mind lately?",
+        "It’s tough feeling down. Would you like to share what’s going on?",
+        "Feeling blue can be heavy. I’m here to listen if you’d like to talk.",
+        "What’s making you feel this way? Let’s work through it together."
+    ],
+
+    "angry|upset|frustrated|irritated": [
+        "I can sense you’re upset. What’s caused these feelings?",
+        "It seems like you’re angry. What happened to make you feel this way?",
+        "Frustration can be challenging. Would talking about it help?",
+        "What’s been bothering you? Let me know how I can assist."
+    ],
+
+    "worried|anxious|uneasy|fearful": [
+        "You seem concerned. Would sharing what’s troubling you help?",
+        "Feeling worried can be overwhelming. What’s on your mind?",
+        "What’s been making you feel uneasy? Let’s try to unpack it.",
+        "Anxiety can feel like a heavy weight. How can I support you?"
+    ],
+
+    //hello patterns
+    "hi|hello|hey there|greetings": [
+        "Hi! What’s been on your mind today?",
+        "Hello there! How are you doing right now?",
+        "Hey! How can I be of assistance to you?",
+        "Greetings! What’s brought you here today?"
+    ],
+
+    //family patterns
+    "(.*)mother|father|sibling|parent|family(.*)": [
+        "Tell me more about your family life.",
+        "How do you feel about your family relationships?",
+        "What role does your family play in your life these days?",
+        "It sounds like family is on your mind. Care to elaborate?"
+    ],
+
+    //I feel patterns
+    "(.*)I feel (.*)": [
+        "What’s made you feel {1}?",
+        "Why do you think you’re feeling {1}?",
+        "How long have you been feeling {1}?",
+        "Does feeling {1} happen often for you?"
+    ],
+    //I am patterns
+    "(.*)I am (.*)": [
+        "What makes you believe you’re {1}?",
+        "How long have you thought of yourself as {1}?",
+        "What led you to think you’re {1}?",
+        "Has something specific made you feel like you’re {1}?"
+    ],
+    //I need patterns
+    "(.*)I need (.*)": [
+        "Why do you feel like you need {1}?",
+        "How would having {1} change things for you?",
+        "What if you didn’t have {1}? Could there be another way?",
+        "Do you often feel like you need {1}?"
+    ],
+
+    //advice patterns
+    "advice|help|support|suggestion": [
+        "What kind of advice or help are you looking for?",
+        "Sometimes exploring the situation can help. What do you think?",
+        "What would you like to change or improve about your situation?",
+        "Let’s think of some steps you could take. What feels manageable for you?"
+    ],
+
+    //default
+    "(.*)": [
+        "Can you expand on that?",
+        "I’m listening. What else is on your mind?",
+        "Why do you say that? Can you explain more?",
+        "I’d like to hear more about that.",
+        "Hmm, interesting. Could you tell me more?",
+        "I didn’t catch that. Could you clarify for me?",
+        "What do you mean by that? Let’s dive deeper.",
+        "I’m here to listen—please share more details."
+    ]
+};
 
 //reflect function
 function reflect(input) {
@@ -200,9 +190,10 @@ function reflect(input) {
 //response method
 function respond(input) {
     //iterate over the response patterns
-    for(const {pattern, response} of responses) {
-        //attempt to match the input to the pattern
+    for(const [pattern, response] of Object.entries(responses)) {
+        //create a regex pattern
         const regex = new RegExp(pattern, 'i');
+        //check if the input matches the pattern
         const match = input.match(regex);
         
         //if the input matches the pattern
@@ -212,7 +203,7 @@ function respond(input) {
            
             if (match.length > 1){
                 //reflected the response groups
-                const reflectedGroups = match.slice(1).map(group => group ? reflect(group): '');
+                const reflectedGroups = match.slice(1).map(group => group ? reflect(group.trim()): '');
                 
                 //replace placeholders with reflected groups
                 return selectedResponse.replace(/{(\d+)}/g, (_, number) => reflectedGroups[number] || '');

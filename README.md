@@ -7,11 +7,11 @@ This repository is part of the Emerging Technologies module in ATU Galways Level
 1. Clone the repository to your local machine:
    - git clone https://github.com/kkmm1234/emergingtechnologies
 3. Notebook:
-   - If run on VSC the required extension can be installed automatically be hitting select kernal on the top right and selecting the first option.
-   - The kernal requires Python.3.13.0, you will be promtped to install when ran if python is missing from your machine.
+   - If run on VSC the required extensions can be installed automatically installed be hitting select kernal on the top right and selecting the first option.
+   - The kernal requires Python, you will be promtped to install when ran if python is missing from your machine.
 5. Eliza bot:
-   - If you would like you can host the Eliza bot on you own webpage.  It is much simplier for you to access the Eliza bot through [Github pages where I've hosted it.](https://kkmm1234.github.io/emergingtechnologies/)
-
+   - If you would like you can host the Eliza bot on you own webpage. It is much simpler for you to access the Eliza bot through [Github pages here,](https://kkmm1234.github.io/emergingtechnologies/) where I've hosted.
+   
 ## Tasks
 1. **Task 1 - Trigram Model**:
    - Read text files and remove any preamble and postamble.

@@ -220,6 +220,12 @@ function respond(input) {
 
 //event listener for send button calls add message function
 sendButton.addEventListener('click', addMessage);
+//get enter key to call add message function
+inputElement.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        addMessage();
+    }
+})
 
 //test
 const userInput = "I feel good how are you feeling";

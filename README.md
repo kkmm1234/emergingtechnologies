@@ -49,8 +49,7 @@ The Eliza inspired chatbot uses pattern matching and reflection to respond to us
 - Reading text files Python: https://www.w3schools.com/python/python_file_open.
 - Java Script docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 - Java Script Objects: https://www.w3schools.com/js/js_objects.asp
-- Regex in Javascript: https://developer.mozilla.org/en
-US/docs/Web/JavaScript/Guide/Regular_expressions
+- Regex in Javascript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
 
 
 

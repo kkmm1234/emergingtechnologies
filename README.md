@@ -1,12 +1,16 @@
 # Emerging Technologies Assignment
 
 ## Overview
-This project is part fo the Emerging Technologies module in ATU Galways Level 8 degree in Software development. This repository is based on getting farmilar with the basics of Artifical Intelligence and how it is implemented. The repository consists of a series of tasks based on trigram models and First order letter and word approximations and JSON data handling. It also contains my own implementation of a Eliza bot, a early natural language processing program.
+This repository is part of the Emerging Technologies module in ATU Galways Level 8 degree in Software development. This repository is based on the basics of Artifical Intelligence and how it is implemented. The repository consists of a series of tasks based on trigram models and First order letter and word approximations and JSON data handling. It also contains my own implementation of a Eliza bot, a early natural language processing program.
 
 ## How to run
-1. Clone the repository to your local machine:  git clone https://github.com/kkmm1234/emergingtechnologies
-2. Notebook:  If run on VSC the required extension can be installed automatically be hitting select kernal on the top right and selecting the first option.  The kernal requires Python.3.13.0, you will be promtped to install when ran if python is missing from your machine.
-3. Eliza bot:  If you would like you can host the Eliza bot on you own webpage.  It is much simplier for you to access the Eliza bot through [Github pages where I've hosted it.](https://kkmm1234.github.io/emergingtechnologies/)
+1. Clone the repository to your local machine:
+   - git clone https://github.com/kkmm1234/emergingtechnologies
+3. Notebook:
+   - If run on VSC the required extension can be installed automatically be hitting select kernal on the top right and selecting the first option.
+   - The kernal requires Python.3.13.0, you will be promtped to install when ran if python is missing from your machine.
+5. Eliza bot:
+   - If you would like you can host the Eliza bot on you own webpage.  It is much simplier for you to access the Eliza bot through [Github pages where I've hosted it.](https://kkmm1234.github.io/emergingtechnologies/)
 
 ## Tasks
 1. **Task 1 - Trigram Model**:
@@ -23,6 +27,32 @@ This project is part fo the Emerging Technologies module in ATU Galways Level 8 
    - Calculate valid words by comparing generated words to words in vaild word data structure.
    - Compute a percentage for the models accuracy to generate valid words.
 4. **Task 4 - Export Model as Json**
-   - Serialize the Model by converting the trigram model into JSON format
-   - Save the serialized model to a JSON file : trigrams.json
+   - Serialize the Model by converting the trigram model into JSON format.
+   - Save the serialized model to a JSON file : trigrams.json.
+  
+## Eliza Chatbot
+The Eliza inspired chatbot uses pattern matching and reflection to respond to user inputs in a meaningful way.
+1. Features:
+   - **Pattern Matching**: uses regular expressions to detect user input patterns.
+   - **Reflecion**: The reflect function inverts a user statement to create converstaional flow eg: (I am good are how are you -> You are good how am I).
+   - **Predefined responses**: A object of predefined responses follow patterns such as emotions, family and requests for things like advice.
+   - **Default Responses**: Fallback responses are provided to keep conversation alive if input does not match a pattern.
+
+## Technical details
+   - JavaScript for chatbot logic.
+   - HTML/CSS for web interface.
+
+## References 
+- Module git repo: https://github.com/ianmcloughlin/2425_emerging_technologies/tree/main
+- Markdown guide: https://www.markdownguide.org/
+- Python docs: https://docs.python.org/3/
+- Reading text files Python: https://www.w3schools.com/python/python_file_open.
+- Java Script docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+- Java Script Objects: https://www.w3schools.com/js/js_objects.asp
+- Regex in Javascript: https://developer.mozilla.org/en
+US/docs/Web/JavaScript/Guide/Regular_expressions
+
+
+
+
 

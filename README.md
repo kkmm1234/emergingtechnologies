@@ -7,13 +7,13 @@ This repository is part of the Emerging Technologies module in ATU Galways Level
 1. Clone the repository to your local machine:
    - git clone https://github.com/kkmm1234/emergingtechnologies
 3. Notebook:
-   - If run on VSC the required extensions can be installed automatically installed be hitting select kernal on the top right and selecting the first option.
+   - If run on VSC the required extensions can be installed automatically by hitting select kernal on the top right and selecting the first option.
    - The kernal requires Python, you will be promtped to install when ran if python is missing from your machine.
 5. Eliza bot:
-   - If you would like you can host the Eliza bot on you own webpage. It is much simpler for you to access the Eliza bot through [Github pages here,](https://kkmm1234.github.io/emergingtechnologies/) where I've hosted.
+   - If you would like you can host the Eliza bot on you own webpage. It is much simpler for you to access the Eliza bot through [Github pages here,](https://kkmm1234.github.io/emergingtechnologies/), where I've hosted it.
 
 ## Progress Tracking
-If you would like to see how this project progressed through the development window you can check the commit history [here](https://github.com/kkmm1234/emergingtechnologies/commits/main/). You can also take a look at closed Github Issues and Milestones [here](https://github.com/kkmm1234/emergingtechnologies/issues?q=is%3Aissue+is%3Aclosed) which were used to document the planning and progress behind this project.
+If you would like to see how this project progressed through the development window you can check the commit history [here](https://github.com/kkmm1234/emergingtechnologies/commits/main/). You can also take a look at closed Github Issues and Milestones [here](https://github.com/kkmm1234/emergingtechnologies/issues?q=is%3Aissue+is%3Aclosed), which were used to document the planning and progress behind this project.
    
 ## Tasks
 1. **Task 1 - Trigram Model**:

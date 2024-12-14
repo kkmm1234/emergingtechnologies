@@ -61,12 +61,28 @@ const reflections = {
 };
 
 const responses = {
-    //goodbye patterns
-    "goodbye|bye|later|farewell": [
-        "Take care! It’s been a pleasure chatting with you.",
-        "See you later! Remember, I’m here when you need to talk.",
-        "Goodbye for now. Feel free to return whenever you like.",
-        "Farewell! Wishing you the best until next time."
+    //I feel patterns
+    "(.*)I feel (.*)": [
+        "What’s made you feel {1}?",
+        "Why do you think you’re feeling {1}?",
+        "How long have you been feeling {1}?",
+        "Does feeling {1} happen often for you?"
+    ],
+
+    //I am patterns
+    "(.*)I am (.*)": [
+        "What makes you believe you’re {1}?",
+        "How long have you thought of yourself as {1}?",
+        "What led you to think you’re {1}?",
+        "Has something specific made you feel like you’re {1}?"
+    ],
+
+    //I need patterns
+    "(.*)I need (.*)": [
+        "Why do you feel like you need {1}?",
+        "How would having {1} change things for you?",
+        "What if you didn’t have {1}? Could there be another way?",
+        "Do you often feel like you need {1}?"
     ],
 
     //emotions
@@ -98,14 +114,6 @@ const responses = {
         "Anxiety can feel like a heavy weight. How can I support you?"
     ],
 
-    //hello patterns
-    "hi|hello|hey there|greetings": [
-        "Hi! What’s been on your mind today?",
-        "Hello there! How are you doing right now?",
-        "Hey! How can I be of assistance to you?",
-        "Greetings! What’s brought you here today?"
-    ],
-
     //family patterns
     "(.*)mother|father|sibling|parent|family(.*)": [
         "Tell me more about your family life.",
@@ -114,34 +122,28 @@ const responses = {
         "It sounds like family is on your mind. Care to elaborate?"
     ],
 
-    //I feel patterns
-    "(.*)I feel (.*)": [
-        "What’s made you feel {1}?",
-        "Why do you think you’re feeling {1}?",
-        "How long have you been feeling {1}?",
-        "Does feeling {1} happen often for you?"
-    ],
-    //I am patterns
-    "(.*)I am (.*)": [
-        "What makes you believe you’re {1}?",
-        "How long have you thought of yourself as {1}?",
-        "What led you to think you’re {1}?",
-        "Has something specific made you feel like you’re {1}?"
-    ],
-    //I need patterns
-    "(.*)I need (.*)": [
-        "Why do you feel like you need {1}?",
-        "How would having {1} change things for you?",
-        "What if you didn’t have {1}? Could there be another way?",
-        "Do you often feel like you need {1}?"
-    ],
-
     //advice patterns
     "advice|help|support|suggestion": [
         "What kind of advice or help are you looking for?",
         "Sometimes exploring the situation can help. What do you think?",
         "What would you like to change or improve about your situation?",
         "Let’s think of some steps you could take. What feels manageable for you?"
+    ],
+    
+    //hello patterns
+    "hi|hello|hey there|greetings": [
+        "Hi! What’s been on your mind today?",
+        "Hello there! How are you doing right now?",
+        "Hey! How can I be of assistance to you?",
+        "Greetings! What’s brought you here today?"
+    ],
+    
+    //goodbye patterns
+    "goodbye|bye|later|farewell": [
+        "Take care! It’s been a pleasure chatting with you.",
+        "See you later! Remember, I’m here when you need to talk.",
+        "Goodbye for now. Feel free to return whenever you like.",
+        "Farewell! Wishing you the best until next time."
     ],
 
     //default

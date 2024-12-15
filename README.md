@@ -37,7 +37,7 @@ If you would like to see how this project progressed through the development win
 The Eliza inspired chatbot uses pattern matching and reflection to respond to user inputs in a meaningful way.
 1. Features:
    - **Pattern Matching**: uses regular expressions to detect user input patterns.
-   - **Reflecion**: The reflect function inverts a user statement to create converstaional flow eg: (I am good are how are you -> You are good how am I).
+   - **Reflection**: The reflect function inverts a user statement to create converstaional flow eg: (I am good are how are you -> You are good how am I).
    - **Predefined responses**: A object of predefined responses follow patterns such as emotions, family and requests for things like advice.
    - **Default Responses**: Fallback responses are provided to keep conversation alive if input does not match a pattern.
 
